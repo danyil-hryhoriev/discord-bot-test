@@ -37,8 +37,7 @@ type CreateContextOptions = {
 const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
     session: opts.session,
-    prisma,
-    discordClient
+    prisma
   };
 };
 
@@ -66,7 +65,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  */
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
-import { discordClient } from "y/server/discord";
+import { getDiscordClient } from "y/server/discord";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,

@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const Home: NextPage = () => {
   const [text, setText] = useState("Hi there!");
-  const { mutate: sendMessage } = api.example.sendDiscordMessage.useMutation({
+  const { mutate: sendMessage } = api.discord.sendDiscordMessage.useMutation({
     onSuccess: (data) => {
       console.log(data);
     },
@@ -41,16 +41,11 @@ export default Home;
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
 
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <p className="text-center text-2xl text-white">
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
       </p>
       <button
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"

@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
 import { env } from "y/env.mjs";
-import { CronManager } from "y/server/cronmanager";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 

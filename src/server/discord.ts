@@ -4,7 +4,8 @@ import process from "process";
 
 const globalForDiscord = globalThis as unknown as { discordClient: Client };
 
-export const discordClient = new Client({ intents: ["Guilds", "GuildMessages", "GuildMessageReactions"] });
-void discordClient.login(process.env.DISCORD_TOKEN);
-
-if (env.NODE_ENV !== "production") globalForDiscord.discordClient = discordClient;
+export const getDiscordClient = async () => {
+  const client = new Client({ intents: ["Guilds", "GuildMessages", "GuildMessageReactions"] })
+  await client.login(process.env.DISCORD_TOKEN);
+  return client;
+};
